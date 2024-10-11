@@ -1,11 +1,11 @@
-package com.example.happybirthday
-
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.background
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -15,38 +15,75 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.foundation.background
+
+
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Greeting(name = "Ismael")
+            LegalInfoScreen()
         }
     }
 }
 
 @Composable
-fun Greeting(name: String) {
+fun LegalInfoScreen() {
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(color = Color(0xFFBBDEFB))
             .padding(16.dp),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.TopCenter
     ) {
-
-        Surface(
-            shape = RoundedCornerShape(16.dp),
-            shadowElevation = 8.dp,
-            modifier = Modifier.padding(24.dp)
+        Column(
+            verticalArrangement = Arrangement.Top,
+            horizontalAlignment = Alignment.Start,
+            modifier = Modifier.fillMaxWidth()
         ) {
+            LegalListItem("Terms and Conditions") {
+                // Action when clicked
+            }
+            LegalListItem("Privacy Policy") {
+                // Action when clicked
+            }
+            LegalListItem("Third Party Licenses") {
+                // Action when clicked
+            }
+        }
+    }
+}
 
+@Composable
+fun LegalListItem(title: String, onClick: () -> Unit) {
+    Surface(
+        shape = RoundedCornerShape(8.dp),
+        shadowElevation = 4.dp,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 8.dp)
+            .clickable { onClick() }
+    ) {
+        Row(
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
             Text(
-                text = "Je m'appelle $name",
-                fontSize = 24.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color(0xFF0D47A1),
-                modifier = Modifier.padding(16.dp)
+                text = title,
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Medium,
+                color = Color.Black,
+                modifier = Modifier.weight(1f)
+            )
+            Icon(
+                imageVector = Icons.Default.ChevronRight,
+                contentDescription = null,
+                tint = Color(0xFF0D47A1)
             )
         }
     }
@@ -54,6 +91,6 @@ fun Greeting(name: String) {
 
 @Preview(showBackground = true, showSystemUi = false)
 @Composable
-fun GreetingPreview() {
-    Greeting(name = "Ismael")
+fun LegalInfoScreenPreview() {
+    LegalInfoScreen()
 }
