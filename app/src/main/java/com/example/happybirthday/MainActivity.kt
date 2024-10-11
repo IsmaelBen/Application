@@ -74,7 +74,7 @@ fun LegalListItem(title: String, onClick: () -> Unit) {
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
 
-            //Ismael
+            //Ismal
             //commentairen
             Text(
                 text = title,
