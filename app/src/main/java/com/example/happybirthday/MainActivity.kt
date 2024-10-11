@@ -73,6 +73,8 @@ fun LegalListItem(title: String, onClick: () -> Unit) {
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
+
+            //Ismael
             //commentairen
             Text(
                 text = title,
